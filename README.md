@@ -16,6 +16,16 @@ and edited pages/_document.tsx
 delete api folder because idont use in this project(SSG)
 rm -rf pages/api/
 
+edit index.tsx, like this(because )
+export default function Home() {
+  return (
+    <>
+      hello world
+    </>
+  )
+}
+
+
 add emotion
 yarn add @emotion/react
 
