@@ -5,14 +5,14 @@ export default function Header() {
     <header
       css={css`
         background-color: #008000;
-        padding: 20px;
+        padding: 8px;
         text-align: center;
       `}
     >
       <h1
         css={css`
           color: #ffffff;
-          font-size: 2em;
+          font-size: 1em;
         `}
       >
         nash1111 Tech Blog
