@@ -11,7 +11,12 @@ YYNNN
 
 add favicons
 public/favicons
+and edited pages/_document.tsx
+
+delete api folder because idont use in this project(SSG)
+rm -rf pages/api/
 
 add emotion
 yarn add @emotion/react
+
 ```
