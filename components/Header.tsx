@@ -1,16 +1,22 @@
-import { useRouter } from "next/router";
-import LanguageToggle from "./LanguageToggle";
+import { css } from "@emotion/react";
 
 export default function Header() {
-  const { locale } = useRouter();
-
   return (
-    <header>
-      <h1>My Blog</h1>
-      <nav>
-        {/* 他のナビゲーションリンク */}
-        <LanguageToggle currentLocale={locale} />
-      </nav>
+    <header
+      css={css`
+        background-color: #008000;
+        padding: 20px;
+        text-align: center;
+      `}
+    >
+      <h1
+        css={css`
+          color: #ffffff;
+          font-size: 2em;
+        `}
+      >
+        nash1111 Tech Blog
+      </h1>
     </header>
   );
 }

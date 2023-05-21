@@ -7,6 +7,7 @@ type Props = {
 };
 
 export default function Post({ postData }: Props) {
+  //console.log("postData", postData);
   return (
     <>
       <Header />
@@ -16,7 +17,6 @@ export default function Post({ postData }: Props) {
       {postData.tags?.map((tag) => (
         <p key={tag}>{tag}</p>
       ))}
-
       <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
     </>
   );

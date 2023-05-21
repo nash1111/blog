@@ -11,7 +11,7 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({ currentLocale }) => {
 
   const [isEnglish, setIsEnglish] = useState(currentLocale === "en");
 
-  const handleLanguageChange = (e: { preventDefault: () => void }) => {
+  const handleLanguageChange = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     const otherLocale = isEnglish ? "jp" : "en";
@@ -21,10 +21,10 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({ currentLocale }) => {
       `/${otherLocale}`
     );
 
-    router.push(newPath, newPath, { locale: false });
+    await router.push(newPath, newPath, { locale: otherLocale });
 
     setIsEnglish(!isEnglish);
-    console.log("isEnglish", isEnglish);
+    console.log("locale", router.locale);
   };
 
   return (
@@ -33,15 +33,17 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({ currentLocale }) => {
         width: 80px;
         height: 25px;
         border-radius: 25px;
-        background-color: #bbb;
-        position: relative;
+        background-color: #0000ff;
+        position: absolute;
+        right: 0;
+        margin-top: 8px;
+        margin-right: 8px;
         cursor: pointer;
         display: flex;
         align-items: center;
-        justify-content: ${isEnglish ? "flex-start" : "flex-end"};
+        justify-content: flex-start;
         padding: 2px;
         box-sizing: border-box;
-        transition: background-color 0.2s;
       `}
       onClick={handleLanguageChange}
     >
@@ -51,14 +53,16 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({ currentLocale }) => {
           height: 21px;
           border-radius: 50%;
           background-color: #fff;
-          transition: transform 0.2s;
+          transition: transform 0.3s ease;
+          transform: ${isEnglish ? "translateX(0)" : "translateX(59px)"};
         `}
       />
       <span
         css={css`
-          position: absolute;
-          ${isEnglish ? "right: 5px;" : "left: 5px;"}
           color: white;
+          transition: transform 0.5s ease;
+          position: absolute;
+          ${isEnglish ? "right: 5px;" : "left: 5px;"};
         `}
       >
         {isEnglish ? "JP" : "EN"}

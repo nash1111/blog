@@ -2,10 +2,8 @@
 title: Test Post 1
 date: '2023-05-20'
 tags: ["Next.js", "blog"]
+locale: "en"
 ---
 
-# Welcome to Test Post 1
+# How I created this blog Part 1
 
-This is a test post.
-
-aaa
