@@ -1,6 +1,6 @@
 ---
 title: How I created this blog PART 1
-date: '2023-05-20'
+date: '2023-05-22'
 tags: ["Next.js", "blog"]
 locale: "en"
 ---
@@ -40,8 +40,12 @@ Therefore, in order to deepen my understanding of CSS, I decided to take a break
 
 
 Would you like to use `src/` directory with this project? (No)  
-
+Though a src/ folder can be handy, I prefer quicker access so I opted for No.  
 
 Use App Router (recommended)? (No)  
-
+AppRouter provides great speed, but using @emotion/react, which I wanted, required declaring use client everywhere, which was too challenging for me.  
 Would you like to customize the default import alias? (No)  
+I chose 'No', the default option, as I had no particular preferences.　　
+
+#### End
+Thanks for reading!!

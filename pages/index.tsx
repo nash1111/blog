@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "@/components/Header";
 import LanguageToggle from "@/components/LanguageToggle";
+import Footer from "@/components/Footer";
 
 type Post = {
   id: string;
@@ -34,6 +35,7 @@ const Home: React.FC<Props> = ({ allPostsData }) => {
           </li>
         ))}
       </ul>
+      <Footer />
     </div>
   );
 };

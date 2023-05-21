@@ -1,6 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getAllPostIds, getPostData, PostData } from "../../lib/posts";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { css } from "@emotion/react";
 
 type Props = {
   postData: PostData;
@@ -11,12 +13,13 @@ export default function Post({ postData }: Props) {
     <>
       <Header />
       <h1>{postData.title}</h1>
-      <p>{postData.id}</p>
-      <p>{postData.date}</p>
-      {postData.tags?.map((tag) => (
-        <p key={tag}>{tag}</p>
-      ))}
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      <div
+        css={css`
+          margin-bottom: 32px;
+        `}
+        dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+      />
+      <Footer />
     </>
   );
 }
