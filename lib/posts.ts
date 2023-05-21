@@ -5,6 +5,9 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import remarkHtml from "remark-html";
+import remark from "remark";
+import markdown from "remark-parse";
+import html from "remark-html";
 
 export interface PostData {
   id: string;
@@ -87,10 +90,8 @@ export function getPostData(id: string, locale: string) {
   const metadata = data as PostData;
 
   // Use remark to convert markdown into HTML string
-  const processor = unified().use(remarkParse).use(remarkStringify);
-  const processedContent = processor.processSync(matterResult.content);
-  const contentHtml = processedContent.toString();
-
+  const processor = unified().use(markdown).use(html);
+  const contentHtml = processor.processSync(matterResult.content).toString();
   return {
     ...metadata,
     id,
