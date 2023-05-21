@@ -9,6 +9,12 @@ export default function Post({ postData }: Props) {
   return (
     <>
       <h1>{postData.title}</h1>
+      <p>{postData.id}</p>
+      <p>{postData.date}</p>
+      {postData.tags?.map((tag) => (
+        <p key={tag}>{tag}</p>
+      ))}
+
       <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
     </>
   );

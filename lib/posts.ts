@@ -4,11 +4,13 @@ import matter from "gray-matter";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
+import remarkHtml from "remark-html";
 
 export interface PostData {
   id: string;
   date: string;
   title: string;
+  tags?: string[];
   contentHtml: string;
   // 他に必要なフィールドがあればここに追加します
 }
@@ -32,7 +34,7 @@ export function getSortedPostsData() {
     const metadata = data as PostData;
 
     // Use remark to convert markdown into HTML string
-    const processor = unified().use(remarkParse).use(remarkStringify);
+    const processor = unified().use(remarkParse).use(remarkHtml);
     const processedContent = processor.processSync(matterResult.content);
     const contentHtml = processedContent.toString();
 
