@@ -9,12 +9,19 @@ yarn create next-app blog
 
 YYNNN
 
+
+make .node-version and write
+v16.20.0
+
 add favicons
 public/favicons
 and edited pages/_document.tsx
 
 delete api folder because idont use in this project(SSG)
 rm -rf pages/api/
+
+delete styles folder, because i write css with react/emotion
+rm -rf styles/
 
 edit index.tsx, like this(because )
 export default function Home() {
@@ -28,5 +35,23 @@ export default function Home() {
 
 add emotion
 yarn add @emotion/react
+
+edit tsconfig.json's compilerOption
+"jsxImportSource": "@emotion/react"
+
+see hello world get red
+import { css } from '@emotion/react'
+
+export default function Home() {
+  return (
+    <>
+    <div css={css`
+      color: red;
+    `}>
+      hello world
+      </div>
+    </>
+  )
+}
 
 ```

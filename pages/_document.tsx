@@ -13,8 +13,8 @@ export default function Document() {
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="msapplication-config" content="/favicons/browserconfig.xml?v=2" />
       <meta name="theme-color" content="#ffffff" />
-      <meta name="description" content="blog of nash1111.github.com" />
-      <meta name="title" content="nash1111.github.com" />
+      <meta name="description" content="tech blog of nash1111" />
+      <meta name="title" content="nash1111 tech blog" />
       </Head>
       <body>
         <Main />
