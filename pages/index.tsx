@@ -1,33 +1,36 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Header from "@/components/Header";
-import { css } from "@emotion/react";
-
+import { getSortedPostsData } from "../lib/posts";
+import Link from "next/link";
 import { GetStaticProps } from "next";
-import { getAllPostIds, getPostData, PostData } from "@/lib/posts";
 
-type Props = {
-  allPostsData: PostData[];
-};
-
-export default function Home({ allPostsData }: Props) {
-  console.log("allPostsData", allPostsData);
+export default function Home({
+  allPostsData,
+}: {
+  allPostsData: {
+    date: string;
+    title: string;
+    id: string;
+  }[];
+}) {
   return (
-    <>
-      <Header />
-      <div
-        css={css`
-          color: red;
-        `}
-      >
-        hello world
-      </div>
-    </>
+    <div>
+      <h1>Blog</h1>
+      <ul>
+        {allPostsData.map(({ id, date, title }) => (
+          <li key={id}>
+            <Link href={`/posts/${id}`}>
+              <a>{title}</a>
+            </Link>
+            <br />
+            <small>{date}</small>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
-export const getStaticProps: GetStaticProps = async () => {
-  const ids = getAllPostIds().map((post) => post.params.id);
-  const allPostsData = await Promise.all(ids.map((id) => getPostData(id)));
 
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const allPostsData = getSortedPostsData(locale || "en");
   return {
     props: {
       allPostsData,

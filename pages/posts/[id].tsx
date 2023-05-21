@@ -22,20 +22,20 @@ export default function Post({ postData }: Props) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds();
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  const paths = (locales || ["en"]).flatMap((locale) => getAllPostIds(locale));
   return {
     paths,
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   try {
     // Ensure params?.id is a string and does not include ".md" extension
     const id =
       typeof params?.id === "string" ? params.id.replace(/\.md$/, "") : "";
-    const postData = await getPostData(id);
+    const postData = await getPostData(id, locale || "en");
     return {
       props: {
         postData,
