@@ -53,7 +53,7 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({ currentLocale }) => {
           border-radius: 50%;
           background-color: #fff;
           transition: transform 0.3s ease;
-          transform: ${isEnglish ? "translateX(0)" : "translateX(59px)"};
+          transform: ${isEnglish ? "translateX(0)" : "translateX(55px)"};
         `}
       />
       <span
