@@ -1,12 +1,9 @@
 ---
-title: Test Post 1 japanese
+title: テスト投稿1
 date: '2023-05-20'
-tags: ["Next.js", "blog"]
+tags: ["tag1", "tag2"]
 locale: "jp"
 ---
 
 # Welcome to Test Post 1
-
-This is a test post.
-
-aaa
+これはテスト投稿です

@@ -19,10 +19,7 @@ type Props = {
 const Home: React.FC<Props> = ({ allPostsData }) => {
   const router = useRouter();
   const { locale } = router;
-  console.log("locale", locale);
-  console.log("allPostsData", allPostsData);
   const postsData = allPostsData.filter((post) => post.locale === locale);
-  console.log("postsData to show", postsData);
 
   return (
     <div>
@@ -43,7 +40,6 @@ const Home: React.FC<Props> = ({ allPostsData }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getAllPostsData();
-  console.log("allPostsData", allPostsData);
   return {
     props: {
       allPostsData,

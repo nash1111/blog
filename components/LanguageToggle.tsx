@@ -24,7 +24,6 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({ currentLocale }) => {
     await router.push(newPath, newPath, { locale: otherLocale });
 
     setIsEnglish(!isEnglish);
-    console.log("locale", router.locale);
   };
 
   return (

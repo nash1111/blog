@@ -7,7 +7,6 @@ type Props = {
 };
 
 export default function Post({ postData }: Props) {
-  //console.log("postData", postData);
   return (
     <>
       <Header />
@@ -42,7 +41,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
       },
     };
   } catch (error) {
-    console.error("Error occurred in getStaticProps:", error);
     throw error; // Continue throwing the error to fail the build
   }
 };
