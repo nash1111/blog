@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getAllPostIds, getPostData, PostData } from "../../lib/posts";
+import Header from "@/components/Header";
 
 type Props = {
   postData: PostData;
@@ -8,6 +9,7 @@ type Props = {
 export default function Post({ postData }: Props) {
   return (
     <>
+      <Header />
       <h1>{postData.title}</h1>
       <p>{postData.id}</p>
       <p>{postData.date}</p>
