@@ -7,7 +7,5 @@ tags: ["Next.js", "blog"]
 # Welcome to Test Post 1
 
 This is a test post.
-```
-sample code here
-```
+
 aaa

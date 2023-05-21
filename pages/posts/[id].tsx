@@ -29,10 +29,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const postData = await getPostData(params?.id as string);
-  return {
-    props: {
-      postData,
-    },
-  };
+  try {
+    // Ensure params?.id is a string and does not include ".md" extension
+    const id =
+      typeof params?.id === "string" ? params.id.replace(/\.md$/, "") : "";
+    const postData = await getPostData(id);
+    return {
+      props: {
+        postData,
+      },
+    };
+  } catch (error) {
+    console.error("Error occurred in getStaticProps:", error);
+    throw error; // Continue throwing the error to fail the build
+  }
 };
