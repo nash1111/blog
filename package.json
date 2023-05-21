@@ -16,9 +16,14 @@
     "@types/react-dom": "18.2.4",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
+    "gray-matter": "^4.0.3",
     "next": "13.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.0.4"
+    "remark-html": "^15.0.2",
+    "remark-parse": "^10.0.2",
+    "remark-stringify": "^10.0.3",
+    "typescript": "5.0.4",
+    "unified": "^10.1.2"
   }
 }
