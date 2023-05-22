@@ -53,14 +53,16 @@ const FirstD3: React.FC = () => {
       .selectAll(".link")
       .data(links)
       .join("line")
-      .classed("link", true);
+      .classed("link", true)
+      .style("stroke", "black"); // Added stroke color for links
 
     const node = svg
       .selectAll(".node")
       .data(nodes)
       .join("circle")
       .classed("node", true)
-      .attr("r", 5);
+      .attr("r", 5)
+      .style("fill", "blue"); // Added fill color for nodes
 
     simulation.on("tick", () => {
       link
