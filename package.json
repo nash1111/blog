@@ -31,5 +31,8 @@
     "remark-stringify": "^10.0.3",
     "typescript": "5.0.4",
     "unified": "^10.1.2"
+  },
+  "devDependencies": {
+    "next-on-pages-vercel-cli": "^29.3.0-next-on-pages-fix-3"
   }
 }
