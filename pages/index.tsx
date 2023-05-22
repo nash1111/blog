@@ -1,20 +1,16 @@
 import { GetStaticProps } from "next";
-import { getAllPostsData } from "../lib/posts";
+import { getAllPostsData, PostData } from "../lib/posts";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "@/components/Header";
 import LanguageToggle from "@/components/LanguageToggle";
 import Footer from "@/components/Footer";
-
-type Post = {
-  id: string;
-  title: string;
-  date: string;
-  locale: string;
-};
+import PostToCard from "@/components/PostToCard";
+import PostsToCard from "@/components/PostsToCard";
+import { css } from "@emotion/react";
 
 type Props = {
-  allPostsData: Post[];
+  allPostsData: PostData[];
 };
 
 const Home: React.FC<Props> = ({ allPostsData }) => {
@@ -25,16 +21,18 @@ const Home: React.FC<Props> = ({ allPostsData }) => {
   return (
     <div>
       <Header />
-      <LanguageToggle currentLocale={locale} />
-      <ul>
-        {postsData.map(({ id, title, date }) => (
-          <li key={id}>
-            <Link href={`/posts/${id}`}>{title}</Link>
-            <br />
-            {date}
-          </li>
-        ))}
-      </ul>
+      <div
+        css={css`
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 80px;
+        `}
+      >
+        <LanguageToggle currentLocale={locale} />
+        <PostsToCard postsData={postsData} />
+      </div>
+
       <Footer />
     </div>
   );
