@@ -84,24 +84,25 @@ const FirstD3: React.FC = () => {
       .select("body")
       .append("div")
       .style("position", "absolute")
-      .style("z-index", "10")
       .style("visibility", "hidden")
-      .style("background", "#fff")
-      .style("border", "1px solid #000")
-      .style("padding", "5px");
+      .style("background", "white") // change this to white
+      .style("color", "black") // change this to black
+      .style("padding", "8px")
+      .style("border-radius", "6px")
+      .style("border", "1px solid black") // this will add a black border
+      .text("A");
 
     node
-      .on("mouseover", function (d) {
-        tooltip.text(d.content);
-        tooltip.style("visibility", "visible");
-      })
-      .on("mousemove", function (event: MouseEvent) {
-        tooltip
-          .style("top", event.pageY - 10 + "px")
-          .style("left", event.pageX + 10 + "px");
+      .on("mouseover", function (d, i) {
+        tooltip.style("visibility", "visible").text(d.content);
       })
       .on("mouseout", function () {
         tooltip.style("visibility", "hidden");
+      })
+      .on("mousemove", function (event) {
+        tooltip
+          .style("top", event.pageY - 10 + "px")
+          .style("left", event.pageX + 10 + "px");
       });
 
     simulation.on("tick", () => {
