@@ -93,7 +93,6 @@ const FirstD3: React.FC = () => {
 
     node
       .on("mouseover", function (event, d) {
-        console.log(d.content);
         tooltip.text(d.content).style("visibility", "visible"); // update the tooltip text
       })
       .on("mouseout", function () {
