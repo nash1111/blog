@@ -78,8 +78,41 @@ const FirstD3: React.FC = () => {
       .attr("r", radius)
       .style("fill", (d) => colorScale(d.attribute))
       .attr("cx", () => Math.random() * width)
-      .attr("cy", () => Math.random() * height)
-      .attr("title", (d) => d.content);
+      .attr("cy", () => Math.random() * height);
+
+    const tooltip = d3
+      .select("body")
+      .append("div")
+      .style("position", "absolute")
+      .style("z-index", "10")
+      .style("visibility", "hidden")
+      .style("background", "#fff")
+      .style("border", "1px solid #000")
+      .style("padding", "5px");
+
+    node
+      .on("mouseover", function (d) {
+        tooltip.text(d.content);
+        tooltip.style("visibility", "visible");
+      })
+      .on("mousemove", function (event: MouseEvent) {
+        tooltip
+          .style("top", event.pageY - 10 + "px")
+          .style("left", event.pageX + 10 + "px");
+      })
+      .on("mouseout", function () {
+        tooltip.style("visibility", "hidden");
+      });
+
+    simulation.on("tick", () => {
+      link
+        .attr("x1", (d) => (d.source as MyNode).x!)
+        .attr("y1", (d) => (d.source as MyNode).y!)
+        .attr("x2", (d) => (d.target as MyNode).x!)
+        .attr("y2", (d) => (d.target as MyNode).y!);
+
+      node.attr("cx", (d) => d.x!).attr("cy", (d) => d.y!);
+    });
 
     simulation.on("tick", () => {
       link
