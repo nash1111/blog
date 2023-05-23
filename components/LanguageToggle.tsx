@@ -29,14 +29,13 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({ currentLocale }) => {
   return (
     <div
       css={css`
-        width: 80px;
-        height: 25px;
+        width: 5rem; // Use rem unit
+        height: 1.5rem; // Use rem unit
         border-radius: 25px;
         background-color: #0000ff;
         position: absolute;
-        right: 0;
-        margin-top: 8px;
-        margin-right: 8px;
+        top: 1rem; // Add this
+        right: 1rem; // Change margin-right to right and use rem unit
         cursor: pointer;
         display: flex;
         align-items: center;
