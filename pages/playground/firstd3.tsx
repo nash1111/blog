@@ -1,5 +1,12 @@
+import * as natural from "natural";
+import { TfIdf } from "natural";
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
+
+interface SimilarityResult {
+  pair: [string, string]; // 文書IDのペア
+  similarity: number; // 類似度
+}
 
 type MyNode = d3.SimulationNodeDatum & {
   id: string;
@@ -21,15 +28,19 @@ const FirstD3: React.FC = () => {
     const radius = 5;
 
     const nodes: MyNode[] = [
-      { id: "1", attribute: "a", content: "Node 1" },
-      { id: "2", attribute: "a", content: "Node 2" },
-      { id: "3", attribute: "a", content: "Node 3" },
-      { id: "4", attribute: "b", content: "Node 4" },
-      { id: "5", attribute: "b", content: "Node 5" },
-      { id: "6", attribute: "b", content: "Node 6" },
-      { id: "7", attribute: "c", content: "Node 7" },
-      { id: "8", attribute: "c", content: "Node 8" },
-      { id: "9", attribute: "d", content: "Node 9" },
+      { id: "1", attribute: "a", content: "Rust is very good language" },
+      { id: "2", attribute: "a", content: "Rust is good" },
+      { id: "3", attribute: "b", content: "Python might be good" },
+      { id: "4", attribute: "b", content: "Python is shit" },
+      { id: "5", attribute: "b", content: "Python is awful" },
+      { id: "6", attribute: "b", content: "Python is nothing but bullshit" },
+      { id: "7", attribute: "c", content: "Never use Python" },
+      {
+        id: "8",
+        attribute: "c",
+        content: "just make cargo like tool in Python",
+      },
+      { id: "9", attribute: "c", content: "fuck python" },
     ];
 
     const links: d3.SimulationLinkDatum<MyNode>[] = [];
