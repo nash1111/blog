@@ -8,6 +8,17 @@ type Props = {
   postData: PostData;
 };
 
+const codeStyle = css`
+  display: inline-block;
+  white-space: pre;
+  color: #444;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 90%;
+  font-family: monospace;
+`;
+
 export default function Post({ postData }: Props) {
   return (
     <>
@@ -16,6 +27,9 @@ export default function Post({ postData }: Props) {
       <div
         css={css`
           margin-bottom: 32px;
+          code {
+            ${codeStyle}
+          }
         `}
         dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
       />

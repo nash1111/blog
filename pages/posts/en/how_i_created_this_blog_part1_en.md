@@ -13,6 +13,7 @@ yarn: 1.22.19
 
 #### Create From Template
 (my answer)  
+```bash
 yarn create next-app blog  
 ✔ Would you like to use TypeScript with this project? … No / Yes (Yes)  
 ✔ Would you like to use ESLint with this project? … No / Yes (Yes)  
@@ -20,6 +21,7 @@ yarn create next-app blog
 ✔ Would you like to use `src/` directory with this project? … No / Yes (No)  
 ✔ Use App Router (recommended)? … No / Yes (No)  
 ✔ Would you like to customize the default import alias? … No / Yes (No)  
+```
 #### Why I chose these
 Would you like to use TypeScript with this project? (Yes)  
 
