@@ -24,7 +24,6 @@ yarn create next-app blog
 ```
 #### Why I chose these
 Would you like to use TypeScript with this project? (Yes)  
-
 I prefer TypeScript over JavaScript.  
 What I don't want to be misunderstood is that I'm not averse to JavaScript.  
 JavaScript is a great language that can be used safely once you fully understand its specifications, and it works in browsers and is fast.  

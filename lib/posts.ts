@@ -14,6 +14,10 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkHtml from "remark-html";
 import remarkPrism from "remark-prism";
+import remarkRehype from "remark-rehype";
+import rehypeRaw from "rehype-raw";
+import rehypeStringify from "rehype-stringify";
+import prism from "remark-prism";
 
 export function getAllPostsData() {
   const locales = ["en", "jp"];
@@ -34,8 +38,11 @@ export function getSortedPostsData(locale: string) {
 
     const processor = unified()
       .use(remarkParse)
-      .use(remarkPrism)
-      .use(remarkHtml);
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeRaw)
+      .use(prism)
+      .use(rehypeStringify);
+
     const processedContent = processor.processSync(matterResult.content);
     const contentHtml = processedContent.toString();
 
