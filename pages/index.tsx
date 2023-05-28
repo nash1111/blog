@@ -32,7 +32,6 @@ const Home: React.FC<Props> = ({ allPostsData }) => {
         <LanguageToggle currentLocale={locale} />
         <PostsToCard postsData={postsData} />
       </div>
-
       <Footer />
     </div>
   );
