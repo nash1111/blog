@@ -25,7 +25,8 @@ const preStyle = css`
 `;
 
 const imgStyle = css`
-  overflow-x: auto;
+  max-width: 100%;
+  height: auto;
 `;
 
 export default function Post({ postData }: Props) {
