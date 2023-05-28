@@ -7,12 +7,21 @@ export default function Header() {
         background-color: #008000;
         padding: 8px;
         text-align: center;
+
+        @media (min-width: 345px) {
+          padding: 16px;
+          text-align: left;
+        }
       `}
     >
       <h1
         css={css`
           color: #ffffff;
           font-size: 1em;
+
+          @media (min-width: 345px) {
+            font-size: 1.5em;
+          }
         `}
       >
         nash1111 Tech Blog
