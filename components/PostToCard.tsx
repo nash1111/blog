@@ -5,9 +5,10 @@ import React from "react";
 
 type CardProps = {
   post: PostData;
+  onTagClick: (tag: string) => void;
 };
 
-const PostToCard: React.FC<CardProps> = ({ post }) => {
+const PostToCard: React.FC<CardProps> = ({ post, onTagClick }) => {
   return (
     <div
       css={css`
@@ -18,7 +19,7 @@ const PostToCard: React.FC<CardProps> = ({ post }) => {
         padding: 20px;
         text-align: center;
         border-radius: 15px;
-        background-color: #007bff; /* 背景色を青に変更 */
+        background-color: #007bff;
         height: 100%;
         margin: 16px;
       `}
@@ -36,7 +37,7 @@ const PostToCard: React.FC<CardProps> = ({ post }) => {
       <h2
         css={css`
           margin: 0;
-          color: #fff; /* タイトルのテキスト色を白に変更 */
+          color: #fff;
         `}
       >
         <Link href={`/posts/${post.id}`}>{post.title}</Link>
@@ -56,6 +57,7 @@ const PostToCard: React.FC<CardProps> = ({ post }) => {
               margin-right: 5px;
               border-radius: 20px;
             `}
+            onClick={() => onTagClick(tag)}
           >
             {tag}
           </span>
