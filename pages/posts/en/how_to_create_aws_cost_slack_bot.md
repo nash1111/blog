@@ -77,7 +77,7 @@ set rule
 ```
 
 #### Step5: load slackWebHookUrl from ssm (lambda/index.ts)
-```
+```typescript
   const ssm = new AWS.SSM();
   const slackWebhookUrlParam = await ssm
     .getParameter({
