@@ -9,6 +9,7 @@ export default function Footer() {
         color: #ffffff;
         text-align: center;
         bottom: 0;
+        overflow-x: auto;
       `}
     >
       <Link href="/">

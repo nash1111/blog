@@ -7,6 +7,7 @@ export default function Header() {
         background-color: #008000;
         padding: 8px;
         text-align: center;
+        overflow-x: auto;
 
         @media (min-width: 345px) {
           padding: 16px;

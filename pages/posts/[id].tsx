@@ -17,6 +17,15 @@ const codeStyle = css`
   padding: 2px 4px;
   font-size: 90%;
   font-family: monospace;
+  overflow-x: auto;
+`;
+
+const preStyle = css`
+  overflow-x: auto;
+`;
+
+const imgStyle = css`
+  overflow-x: auto;
 `;
 
 export default function Post({ postData }: Props) {
@@ -29,6 +38,12 @@ export default function Post({ postData }: Props) {
           margin-bottom: 32px;
           code {
             ${codeStyle}
+          }
+          pre {
+            ${preStyle}
+          }
+          img {
+            ${imgStyle}
           }
         `}
         dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
