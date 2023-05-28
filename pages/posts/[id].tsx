@@ -37,6 +37,9 @@ export default function Post({ postData }: Props) {
       <div
         css={css`
           margin-bottom: 32px;
+          * {
+            font-size: 1.1em; // or whatever larger size you want
+          }
           code {
             ${codeStyle}
           }

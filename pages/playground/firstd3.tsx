@@ -81,15 +81,33 @@ const FirstD3: React.FC = () => {
       .classed("link", true)
       .style("stroke", "black");
 
+    const drag = d3
+      .drag<SVGCircleElement, MyNode>()
+      .on("start", (event, d) => {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+        event.sourceEvent.preventDefault(); // 追加
+      })
+      .on("drag", (event, d) => {
+        d.fx = event.x;
+        d.fy = event.y;
+      })
+      .on("end", (event, d) => {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      });
+
     const node = svg
-      .selectAll(".node")
+      .selectAll<SVGCircleElement, MyNode>(".node")
       .data(nodes)
       .join("circle")
-      .classed("node", true)
       .attr("r", radius)
       .style("fill", (d) => colorScale(d.attribute))
       .attr("cx", () => Math.random() * width)
-      .attr("cy", () => Math.random() * height);
+      .attr("cy", () => Math.random() * height)
+      .call(drag as any); // TypeScriptの型チェックを回避
 
     const tooltip = d3
       .select("body")
@@ -125,15 +143,16 @@ const FirstD3: React.FC = () => {
       node.attr("cx", (d) => d.x!).attr("cy", (d) => d.y!);
     });
 
-    simulation.on("tick", () => {
-      link
-        .attr("x1", (d) => (d.source as MyNode).x!)
-        .attr("y1", (d) => (d.source as MyNode).y!)
-        .attr("x2", (d) => (d.target as MyNode).x!)
-        .attr("y2", (d) => (d.target as MyNode).y!);
-
+    const oscillation = () => {
+      for (let node of nodes) {
+        node.x! += (Math.random() - 0.5) / 50;
+        node.y! += (Math.random() - 0.5) / 50;
+      }
+      // ここでノードの位置を更新
       node.attr("cx", (d) => d.x!).attr("cy", (d) => d.y!);
-    });
+    };
+
+    setInterval(oscillation, 50);
   }, []);
 
   return <svg ref={svgRef} style={{ width: "500px", height: "500px" }} />;
