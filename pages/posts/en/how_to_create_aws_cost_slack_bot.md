@@ -13,7 +13,7 @@ That's why I built an AWS cost notification bot using AWS CDK (Cloud Development
 ❯ cdk --version
 2.81.0 (build bd920f2)
 ❯ aws --version
-aws-cli/2.11.2 Python/3.11.2 Linux/5.19.0-35-generic source/x86_64.ubuntu.22 prompt/off
+aws-cli/2.11.2 Python/3.11.2
 ```
 
 #### Step1: Create a new AWS CDK Project
@@ -30,7 +30,9 @@ yarn add aws-cdk-lib aws-sdk axios @slack/webhook
 
 #### Step3: put your SlackWebhookUrl to SSM
 ```bash
-aws ssm put-parameter --name "/billing_lambda_app/slackWebhookUrl" --value "[Your SlackWebhookUrl]" --type "SecureString"
+aws ssm put-parameter \
+--name "/billing_lambda_app/slackWebhookUrl" \
+--value "[Your SlackWebhookUrl]" --type "SecureString"
 ```
 
 #### Step4: Grant the Necessary Permissions to Lambda (lib/aws_billing_lambda-stack.ts)
