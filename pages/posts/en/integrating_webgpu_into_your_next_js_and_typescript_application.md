@@ -56,11 +56,10 @@ Add to next.config.js.
     );
 ```
 
-#### 実装
-基本的に[元コード](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts)をそのままにした  
-しかし、元コードではcompilerOptionsがstrict:falseになっており、自分のプロジェクトではtrueだったので、canvasの存在確認などを入れた
-```components/FirstWebgpu.tsx```
-は最終的にこのようになった
+#### Implementation
+The [original code](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts) was largely left as is. However, since compilerOptions was set to strict: false in the original code and true in my project, I added things like checking for the existence of the canvas. 
+```components/FirstWebgpu.tsx``` eventually ended up looking like this:
+
 ```TypeScript
 import React, { useState, useRef, useEffect } from "react";
 import triangleVertWGSL from "../shaders/triangle.vert.wgsl";
@@ -163,9 +162,7 @@ export default HelloTriangle;
 ```
 
 #### Result
-三角形の描画が出来ていることが[リンク先](https://nash1111rgba.com/playground/hellotriangle)でわかるかと思う  
-注意！WebGPUをオンにしてください
-
-
-
-次の投稿では、時間をおうごとに色が変化する仕組みなどを導入したい
+You can see the triangle being drawn at this [link](https://nash1111rgba.com/playground/hellotriangle).
+Note: Please turn on WebGPU.
+![hellotriangle.png](/blog/hellotriangle.png)
+In the next post, I would like to implement features such as changing colors over time.
