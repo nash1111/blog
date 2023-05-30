@@ -161,7 +161,7 @@ export default HelloTriangle;
 ```
 
 #### Result
-You can see the triangle being drawn at this [link](https://nash1111rgba.com/playground/hellotriangle).
+You can see the triangle being drawn at this [link](https://nash1111rgba.com/playground/hellotriangle).  
 Note: Please turn on WebGPU.
-![hellotriangle.png](/blog/hellotriangle.png)
+![hellotriangle.png](/blog/hellotriangle.png)  
 In the next post, I would like to implement features such as changing colors over time.
