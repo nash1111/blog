@@ -23,7 +23,7 @@ yarn add @webgpu/types
 ```
 
 Add to types.d.ts to treat wgsl files as strings.
-```TypeScript
+```bash
 declare module "*.wgsl" {
   const shader: string;
   export default shader;
@@ -31,7 +31,7 @@ declare module "*.wgsl" {
 ```
 
 Add to next.config.js.
-```JavaScript
+```bash
   webpack: (config, { webpack }) => {
     config.module.rules.push({
       test: /\.(png|jpe?g|gif|webm)$/i,
@@ -158,7 +158,6 @@ const HelloTriangle: React.FC = () => {
 };
 
 export default HelloTriangle;
-
 ```
 
 #### Result
