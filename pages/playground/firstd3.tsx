@@ -30,19 +30,23 @@ const FirstD3: React.FC = () => {
     const radius = 5;
 
     const nodes: MyNode[] = [
-      { id: "1", attribute: "a", content: "Rust is very good language" },
-      { id: "2", attribute: "a", content: "Rust is good" },
-      { id: "3", attribute: "b", content: "Python might be good" },
-      { id: "4", attribute: "b", content: "Python is shit" },
-      { id: "5", attribute: "b", content: "Python is awful" },
-      { id: "6", attribute: "b", content: "Python is nothing but bullshit" },
-      { id: "7", attribute: "c", content: "Never use Python" },
+      { id: "1", attribute: "a", content: "Use Rust" },
+      { id: "2", attribute: "a", content: "Just use Rust" },
+      { id: "3", attribute: "b", content: "Never use Python" },
+      { id: "4", attribute: "b", content: "Plese don't use Python" },
+      {
+        id: "5",
+        attribute: "b",
+        content: "Code written in Python could be horrible",
+      },
+      { id: "6", attribute: "b", content: "Avoid to use Python" },
+      { id: "7", attribute: "c", content: "Test 1" },
       {
         id: "8",
         attribute: "c",
-        content: "just make cargo like tool in Python",
+        content: "Test 2",
       },
-      { id: "9", attribute: "c", content: "fuck python" },
+      { id: "9", attribute: "c", content: "Test 3" },
     ];
 
     const links: d3.SimulationLinkDatum<MyNode>[] = [];
