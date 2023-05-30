@@ -9,8 +9,8 @@ locale: "en"
 #### Goal
 In this post, we will set up our development environment and draw a triangle using WebGPU, and then turn it into a component. We aim to render the red triangle seen in this [link](https://webgpu.github.io/webgpu-samples/samples/helloTriangle) within Next.js. In other words, our goal is to port this [code](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts) into a component.
 #### Environment Setup
-Access [chrome://flags/](chrome://flags/) and turn on WebGPU.  
-Access [chrome://gpu/](chrome://gpu/) and make sure WebGPU is enabled.  
+Access [chrome://flags/](chrome://flags/) in your chrome browser and turn on WebGPU.  
+Access [chrome://gpu/](chrome://gpu/) in your chrome browser and make sure WebGPU is enabled.  
 ![webgpu.png](/blog/webgpu.png) 
 
 Install an extension for WGSL.  
