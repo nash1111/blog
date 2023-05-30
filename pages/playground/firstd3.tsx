@@ -23,6 +23,8 @@ const FirstD3: React.FC = () => {
     }
 
     const svg = d3.select(svgRef.current);
+    svg.selectAll("*").remove(); // 全ての子要素を削除
+
     const width = 500;
     const height = 500;
     const radius = 5;
