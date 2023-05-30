@@ -5,15 +5,24 @@ tags: ["TypeScript", "WebGPU"]
 locale: "en"
 ---
 
-この記事では、開発環境の設定と、WebGPUを使って三角形を書き、それをコンポーネントにする
-コンポーネントを作る
 
+#### Goal
+In this post, we will set up our development environment and draw a triangle using WebGPU, and then turn it into a component. We aim to render the red triangle seen in this [link](https://webgpu.github.io/webgpu-samples/samples/helloTriangle) within Next.js. In other words, our goal is to port this [code](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts) into a component.
+#### Environment Setup
+Access [chrome://flags/](chrome://flags/) and turn on WebGPU.  
+Access [chrome://gpu/](chrome://gpu/) and make sure WebGPU is enabled.  
+![webgpu.png](/blog/webgpu.png) 
 
-拡張機能を入れる
+Install an extension for WGSL.  
 https://marketplace.visualstudio.com/items?itemName=PolyMeilex.wgsl
-Add type settings( [type repo](https://github.com/gpuweb/types) )
 
-wgslファイルを文字列として扱うようにtypes.d.tsに追記する
+Add the WebGPU type definitions to your project ( [type repo](https://github.com/gpuweb/types) )
+
+```bash
+yarn add @webgpu/types
+```
+
+Add to types.d.ts to treat wgsl files as strings.
 ```TypeScript
 declare module "*.wgsl" {
   const shader: string;
@@ -21,7 +30,7 @@ declare module "*.wgsl" {
 }
 ```
 
-
+Add to next.config.js.
 ```JavaScript
   webpack: (config, { webpack }) => {
     config.module.rules.push({
@@ -47,7 +56,116 @@ declare module "*.wgsl" {
     );
 ```
 
+#### 実装
+基本的に[元コード](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts)をそのままにした  
+しかし、元コードではcompilerOptionsがstrict:falseになっており、自分のプロジェクトではtrueだったので、canvasの存在確認などを入れた
+```components/FirstWebgpu.tsx```
+は最終的にこのようになった
+```TypeScript
+import React, { useState, useRef, useEffect } from "react";
+import triangleVertWGSL from "../shaders/triangle.vert.wgsl";
+import redFragWGSL from "../shaders/red.frag.wgsl";
 
-```bash
-yarn add @webgpu/types
+const HelloTriangle: React.FC = () => {
+  const [pageState, setPageState] = useState({ active: true });
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const init = async () => {
+      const adapter = await navigator.gpu.requestAdapter();
+      const device = await adapter?.requestDevice();
+
+      if (!pageState.active) return;
+      if (!canvas) {
+        console.error("canvas not defined");
+        return;
+      }
+      const context = canvas.getContext("webgpu") as GPUCanvasContext;
+
+      const devicePixelRatio = window.devicePixelRatio || 1;
+      canvas.width = canvas.clientWidth * devicePixelRatio;
+      canvas.height = canvas.clientHeight * devicePixelRatio;
+      const presentationFormat = navigator.gpu.getPreferredCanvasFormat();
+
+      if (!device) {
+        console.error("Device is not available");
+        return;
+      }
+      context.configure({
+        device,
+        format: presentationFormat,
+        alphaMode: "premultiplied",
+      });
+
+      const pipeline = device.createRenderPipeline({
+        layout: "auto",
+        vertex: {
+          module: device.createShaderModule({
+            code: triangleVertWGSL,
+          }),
+          entryPoint: "main",
+        },
+        fragment: {
+          module: device.createShaderModule({
+            code: redFragWGSL,
+          }),
+          entryPoint: "main",
+          targets: [
+            {
+              format: presentationFormat,
+            },
+          ],
+        },
+        primitive: {
+          topology: "triangle-list",
+        },
+      });
+
+      const frame = () => {
+        if (!pageState.active) return;
+
+        const commandEncoder = device.createCommandEncoder();
+        const textureView = context.getCurrentTexture().createView();
+
+        const renderPassDescriptor: GPURenderPassDescriptor = {
+          colorAttachments: [
+            {
+              view: textureView,
+              clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
+              loadOp: "clear" as const,
+              storeOp: "store" as const,
+            },
+          ],
+        };
+
+        const passEncoder =
+          commandEncoder.beginRenderPass(renderPassDescriptor);
+        passEncoder.setPipeline(pipeline);
+        passEncoder.draw(3, 1, 0, 0);
+        passEncoder.end();
+
+        device.queue.submit([commandEncoder.finish()]);
+        requestAnimationFrame(frame);
+      };
+
+      requestAnimationFrame(frame);
+    };
+
+    init();
+  }, [pageState.active]);
+
+  return <canvas ref={canvasRef} />;
+};
+
+export default HelloTriangle;
+
 ```
+
+#### Result
+三角形の描画が出来ていることが[リンク先](https://nash1111rgba.com/playground/hellotriangle)でわかるかと思う  
+注意！WebGPUをオンにしてください
+
+
+
+次の投稿では、時間をおうごとに色が変化する仕組みなどを導入したい

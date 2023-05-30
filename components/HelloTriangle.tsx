@@ -4,15 +4,19 @@ import redFragWGSL from "../shaders/red.frag.wgsl";
 
 const HelloTriangle: React.FC = () => {
   const [pageState, setPageState] = useState({ active: true });
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const init = async () => {
       const adapter = await navigator.gpu.requestAdapter();
-      const device = await adapter.requestDevice();
+      const device = await adapter?.requestDevice();
 
       if (!pageState.active) return;
+      if (!canvas) {
+        console.error("canvas not defined");
+        return;
+      }
       const context = canvas.getContext("webgpu") as GPUCanvasContext;
 
       const devicePixelRatio = window.devicePixelRatio || 1;
@@ -20,6 +24,10 @@ const HelloTriangle: React.FC = () => {
       canvas.height = canvas.clientHeight * devicePixelRatio;
       const presentationFormat = navigator.gpu.getPreferredCanvasFormat();
 
+      if (!device) {
+        console.error("Device is not available");
+        return;
+      }
       context.configure({
         device,
         format: presentationFormat,
@@ -61,8 +69,8 @@ const HelloTriangle: React.FC = () => {
             {
               view: textureView,
               clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
-              loadOp: "clear" as const, // 追加
-              storeOp: "store" as const, // 追加
+              loadOp: "clear" as const,
+              storeOp: "store" as const,
             },
           ],
         };
@@ -81,7 +89,7 @@ const HelloTriangle: React.FC = () => {
     };
 
     init();
-  }, []);
+  }, [pageState.active]);
 
   return <canvas ref={canvasRef} />;
 };
