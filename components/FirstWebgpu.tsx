@@ -10,7 +10,7 @@ const HelloTriangle: React.FC = () => {
     const canvas = canvasRef.current;
     const init = async () => {
       const adapter = await navigator.gpu.requestAdapter();
-      const device = await adapter?.requestDevice();
+      const device = await adapter.requestDevice();
 
       if (!pageState.active) return;
       const context = canvas.getContext("webgpu") as GPUCanvasContext;
