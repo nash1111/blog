@@ -61,8 +61,8 @@ const HelloTriangle: React.FC = () => {
             {
               view: textureView,
               clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
-              loadOp: "clear",
-              storeOp: "store",
+              loadOp: "clear" as const, // 追加
+              storeOp: "store" as const, // 追加
             },
           ],
         };
