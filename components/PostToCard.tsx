@@ -55,6 +55,7 @@ const PostToCard: React.FC<CardProps> = ({ post, onTagClick }) => {
               background-color: #f1f1f1;
               padding: 5px 10px;
               margin-right: 5px;
+              margin-bottom: 5px;
               border-radius: 20px;
             `}
             onClick={() => onTagClick(tag)}
