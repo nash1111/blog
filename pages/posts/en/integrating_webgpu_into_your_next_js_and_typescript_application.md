@@ -1,17 +1,19 @@
 ---
 title: Integrating WebGPU into Your Next.js and TypeScript Application Part 1
-date: '2023-05-30'
+date: "2023-05-30"
 tags: ["TypeScript", "WebGPU"]
 locale: "en"
 ---
 
-
 #### Goal
+
 In this post, we will set up our development environment and draw a triangle using WebGPU, and then turn it into a component. We aim to render the red triangle seen in this [link](https://webgpu.github.io/webgpu-samples/samples/helloTriangle) within Next.js. In other words, our goal is to port this [code](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts) into a component.
+
 #### Environment Setup
+
 Access [chrome://flags/](chrome://flags/) in your chrome browser and turn on WebGPU.  
 Access [chrome://gpu/](chrome://gpu/) in your chrome browser and make sure WebGPU is enabled.  
-![webgpu.png](/blog/webgpu.png) 
+![webgpu.png](/blog/webgpu.png)
 
 Install an extension for WGSL.  
 https://marketplace.visualstudio.com/items?itemName=PolyMeilex.wgsl
@@ -23,6 +25,7 @@ yarn add @webgpu/types
 ```
 
 Add to types.d.ts to treat wgsl files as strings.
+
 ```bash
 declare module "*.wgsl" {
   const shader: string;
@@ -31,6 +34,7 @@ declare module "*.wgsl" {
 ```
 
 Add to next.config.js.
+
 ```bash
   webpack: (config, { webpack }) => {
     config.module.rules.push({
@@ -57,10 +61,11 @@ Add to next.config.js.
 ```
 
 #### Implementation
-The [original code](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts) was largely left as is. However, since compilerOptions was set to strict: false in the original code and true in my project, I added things like checking for the existence of the canvas. 
-```components/FirstWebgpu.tsx``` eventually ended up looking like this:
 
-```TypeScript
+The [original code](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts) was largely left as is. However, since compilerOptions was set to strict: false in the original code and true in my project, I added things like checking for the existence of the canvas.
+`components/FirstWebgpu.tsx` eventually ended up looking like this:
+
+```bash
 import React, { useState, useRef, useEffect } from "react";
 import triangleVertWGSL from "../shaders/triangle.vert.wgsl";
 import redFragWGSL from "../shaders/red.frag.wgsl";
@@ -161,6 +166,7 @@ export default HelloTriangle;
 ```
 
 #### Result
+
 You can see the triangle being drawn at this [link](https://nash1111rgba.com/playground/hellotriangle).  
 Note: Please turn on WebGPU.
 ![hellotriangle.png](/blog/hellotriangle.png)  
