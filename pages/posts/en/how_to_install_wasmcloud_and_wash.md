@@ -7,7 +7,7 @@ locale: "en"
 
 #### Goal
 
-install wash (wasmCloud Shell)
+install wasmCloud and wash (wasmCloud Shell)
 
 #### Installation
 
