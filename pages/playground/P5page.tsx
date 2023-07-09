@@ -11,7 +11,7 @@ const P5page: React.FC = () => {
   const [grid, setGrid] = useState<Color[][]>([]);
   const p5Ref = useRef<p5 | null>(null);
 
-  const setup = (p5: p5, canvasParentRef: Element) => {
+  const setup = (p5: any, canvasParentRef: any) => {
     p5Ref.current = p5;
     p5.createCanvas(gridSize * cellSize, gridSize * cellSize + 50).parent(
       canvasParentRef
@@ -29,7 +29,7 @@ const P5page: React.FC = () => {
     p5.background(255);
   };
 
-  const draw = (p5: p5) => {
+  const draw = (p5: any) => {
     const color = p5.color(currentColor);
 
     for (let i = 0; i < gridSize; i++) {
@@ -50,7 +50,7 @@ const P5page: React.FC = () => {
     p5.rect(0, gridSize * cellSize, p5.width, 50);
   };
 
-  const mouseDragged = (p5: p5) => {
+  const mouseDragged = (p5: any) => {
     let i = Math.floor(p5.mouseX / cellSize);
     let j = Math.floor(p5.mouseY / cellSize);
     if (i >= 0 && i < gridSize && j >= 0 && j < gridSize) {
