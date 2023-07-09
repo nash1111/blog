@@ -1,14 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import dynamic from "next/dynamic";
-import p5, { Color, Element } from "p5";
+import p5, { Color } from "p5";
 const Sketch = dynamic(() => import("react-p5"), { ssr: false });
 
 const P5page: React.FC = () => {
   const gridSize = 16;
   const cellSize = 25;
   const borderVisible = useRef(true);
-  const picker = useRef<Element>();
-  const currentColor = useRef<Color>();
+  const [currentColor, setCurrentColor] = useState<string>("#ff0000");
   const [grid, setGrid] = useState<Color[][]>([]);
   const p5Ref = useRef<p5 | null>(null);
 
@@ -27,19 +26,11 @@ const P5page: React.FC = () => {
       initialGrid.push(row);
     }
     setGrid(initialGrid);
-
-    // Create color picker
-    picker.current = p5.createColorPicker("#ff0000");
-    picker.current.position(300, gridSize * cellSize + 10);
-
-    currentColor.current = picker.current.color();
-
     p5.background(255);
   };
 
   const draw = (p5: p5) => {
-    // update current color
-    currentColor.current = picker.current?.color();
+    const color = p5.color(currentColor);
 
     for (let i = 0; i < gridSize; i++) {
       for (let j = 0; j < gridSize; j++) {
@@ -54,7 +45,7 @@ const P5page: React.FC = () => {
     }
 
     // display current color outside the grid
-    p5.fill(currentColor.current);
+    p5.fill(color);
     p5.noStroke();
     p5.rect(0, gridSize * cellSize, p5.width, 50);
   };
@@ -64,7 +55,7 @@ const P5page: React.FC = () => {
     let j = Math.floor(p5.mouseY / cellSize);
     if (i >= 0 && i < gridSize && j >= 0 && j < gridSize) {
       let newGrid = [...grid];
-      newGrid[j][i] = currentColor.current!;
+      newGrid[j][i] = p5.color(currentColor);
       setGrid(newGrid);
     }
   };
@@ -114,6 +105,11 @@ const P5page: React.FC = () => {
       <button onClick={saveImage}>Save</button>
       <button onClick={clearGrid}>Clear</button>
       <button onClick={toggleBorders}>Toggle Borders</button>
+      <input
+        type="color"
+        value={currentColor}
+        onChange={(e) => setCurrentColor(e.target.value)}
+      />
       <Sketch setup={setup} draw={draw} mouseDragged={mouseDragged} />
     </div>
   );
