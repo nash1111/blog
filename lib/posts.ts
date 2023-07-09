@@ -87,7 +87,10 @@ export function getPostData(id: string, locale: string) {
   const { data } = matterResult;
   const metadata = data as PostData;
 
-  const processor = unified().use(remarkParse).use(remarkPrism).use(remarkHtml);
+  const u = unified();
+  const p1 = u.use(remarkParse);
+  const p2 = p1.use(remarkPrism);
+  const processor = p2.use(remarkHtml);
   const contentHtml = processor.processSync(matterResult.content).toString();
 
   return {
