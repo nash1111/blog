@@ -136,7 +136,7 @@ const BunnyOnWaterPage: React.FC = () => {
     };
 
     const scene = createScene();
-    scene.clearColor = new BABYLON.Color4(0.5, 1, 0.5, 1);
+    scene.clearColor = new BABYLON.Color4(0.5, 0.5, 0.8, 1);
 
     engine.runRenderLoop(function () {
       scene.render();
