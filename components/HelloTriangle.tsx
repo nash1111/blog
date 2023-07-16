@@ -9,7 +9,7 @@ const HelloTriangle: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const init = async () => {
-      const adapter = await navigator.gpu.requestAdapter();
+      const adapter = await navigator.gpu?.requestAdapter();
       const device = await adapter?.requestDevice();
 
       if (!pageState.active) return;
@@ -22,15 +22,15 @@ const HelloTriangle: React.FC = () => {
       const devicePixelRatio = window.devicePixelRatio || 1;
       canvas.width = canvas.clientWidth * devicePixelRatio;
       canvas.height = canvas.clientHeight * devicePixelRatio;
-      const presentationFormat = navigator.gpu.getPreferredCanvasFormat();
+      const presentationFormat = navigator.gpu?.getPreferredCanvasFormat();
 
       if (!device) {
         console.error("Device is not available");
         return;
       }
       context.configure({
-        device,
-        format: presentationFormat,
+        device: device as any,
+        format: presentationFormat as GPUTextureFormat,
         alphaMode: "premultiplied",
       });
 
@@ -39,19 +39,19 @@ const HelloTriangle: React.FC = () => {
         vertex: {
           module: device.createShaderModule({
             code: triangleVertWGSL,
-          }),
+          }) as GPUShaderModule,
           entryPoint: "main",
         },
         fragment: {
           module: device.createShaderModule({
             code: redFragWGSL,
-          }),
+          }) as GPUShaderModule,
           entryPoint: "main",
           targets: [
             {
               format: presentationFormat,
             },
-          ],
+          ] as any,
         },
         primitive: {
           topology: "triangle-list",
