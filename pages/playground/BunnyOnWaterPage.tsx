@@ -22,6 +22,24 @@ const BunnyOnWaterPage: React.FC = () => {
       );
       camera.attachControl(canvas, true);
 
+      // Create a dynamic texture
+      var dynamicTexture = new BABYLON.DynamicTexture(
+        "dynamic texture",
+        { width: 512, height: 512 },
+        scene,
+        false
+      );
+
+      // Get a 2D drawing context from the dynamic texture
+      var ctx = dynamicTexture.getContext();
+
+      // Draw a filled rectangle with a water color
+      ctx.fillStyle = "aqua";
+      ctx.fillRect(0, 0, 512, 512);
+
+      // Update the dynamic texture
+      dynamicTexture.update();
+
       const light1 = new BABYLON.HemisphericLight(
         "light1",
         new BABYLON.Vector3(1, 1, 0),
@@ -51,7 +69,7 @@ const BunnyOnWaterPage: React.FC = () => {
         new BABYLON.Vector2(1024, 1024)
       );
       waterMaterial.backFaceCulling = true;
-      waterMaterial.bumpTexture = new BABYLON.Texture("/water.png", scene);
+      waterMaterial.bumpTexture = dynamicTexture;
       waterMaterial.windForce = -10;
       waterMaterial.waveHeight = 0.5;
       waterMaterial.bumpHeight = 0.1;
@@ -85,10 +103,7 @@ const BunnyOnWaterPage: React.FC = () => {
         );
 
         // Texture of each particle
-        particleSystem.particleTexture = new BABYLON.Texture(
-          "/water.png",
-          scene
-        );
+        particleSystem.particleTexture = dynamicTexture;
 
         // Where the particles come from
         particleSystem.emitter = position; // the starting object, the emitter
