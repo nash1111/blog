@@ -14,9 +14,9 @@ const BunnyOnWaterPage: React.FC = () => {
       const scene = new BABYLON.Scene(engine);
       const camera = new BABYLON.ArcRotateCamera(
         "Camera",
-        Math.PI / 2,
-        Math.PI / 2,
-        2,
+        (3 * Math.PI) / 2,
+        Math.PI / 3, // カメラを少し下向きにする
+        85, // カメラをターゲットから遠ざける
         BABYLON.Vector3.Zero(),
         scene
       );
