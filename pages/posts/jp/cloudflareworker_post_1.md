@@ -1,7 +1,7 @@
 ---
-title: CloudFlareWorkerでシンプルなAPIを作る
+title: CloudFlareWorkersでシンプルなAPIを作る(Rust)
 date: "2023-07-21"
-tags: ["WebAssembly", "Rust", "CloudFlare", "CloudFlareWorker"]
+tags: ["WebAssembly", "Rust", "CloudFlare", "CloudFlareWorkers"]
 locale: "jp"
 ---
 
@@ -35,13 +35,13 @@ cd unix_time_formatter
 wrangler dev
 ```
 
+テンプレートのコードはリクエストが来たら"Hello, World!"返すようになっているので、確認します
+[テンプレート](https://github.com/cloudflare/workers-sdk/blob/main/templates/experimental/worker-rust/src/lib.rs)
+
 ```bash
 ❯ curl localhost:8787
 Hello, World!
 ```
-
-リクエストが来たら"Hello, World!"返すようになっています
-https://github.com/cloudflare/workers-sdk/blob/main/templates/experimental/worker-rust/src/lib.rs
 
 #### コードの変更
 
