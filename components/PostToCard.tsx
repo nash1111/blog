@@ -38,6 +38,8 @@ const PostToCard: React.FC<CardProps> = ({ post, onTagClick }) => {
         css={css`
           margin: 0;
           color: #fff;
+          overflow: hidden; // 追加: コンテンツがボックスを超えた場合に隠す
+          text-overflow: ellipsis; // 追加: テキストがボックスを超えた場合に...を表示
         `}
       >
         <Link href={`/posts/${post.id}`}>{post.title}</Link>
