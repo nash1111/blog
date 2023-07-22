@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "@/components/Header";
 import LanguageToggle from "@/components/LanguageToggle";
-import Footer from "@/components/Footer";
+import HomeFooter from "@/components/HomeFooter";
 import PostToCard from "@/components/PostToCard";
 import PostsToCard from "@/components/PostsToCard";
 import { css } from "@emotion/react";
+import HomeHeader from "@/components/HomeHeader";
 
 type Props = {
   allPostsData: PostData[];
@@ -20,7 +21,7 @@ const Home: React.FC<Props> = ({ allPostsData }) => {
 
   return (
     <div>
-      <Header />
+      <HomeHeader />
       <div
         css={css`
           display: flex;
@@ -32,7 +33,7 @@ const Home: React.FC<Props> = ({ allPostsData }) => {
         <LanguageToggle currentLocale={locale} />
         <PostsToCard postsData={postsData} />
       </div>
-      <Footer />
+      <HomeFooter />
     </div>
   );
 };

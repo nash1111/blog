@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 import HomeButton from "./HomeButton";
 import TweetButton from "./TweetButton";
-
 export default function Header() {
   return (
     <header
@@ -27,6 +26,7 @@ export default function Header() {
           css={css`
             color: #ffffff;
             font-size: 1em;
+            margin-right: 16px; // これを追加
 
             @media (min-width: 345px) {
               font-size: 1.5em;
@@ -35,7 +35,6 @@ export default function Header() {
         >
           nash1111 Tech Blog
         </h2>
-        <HomeButton />
         <TweetButton />
       </div>
     </header>
