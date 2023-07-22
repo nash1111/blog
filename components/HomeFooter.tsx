@@ -6,7 +6,7 @@ import { css } from "@emotion/react";
 import HomeButton from "./HomeButton";
 import TweetButton from "./TweetButton";
 
-export default function Footer() {
+export default function HomeFooter() {
   return (
     <footer
       css={css`
@@ -24,10 +24,8 @@ export default function Footer() {
       <div
         css={css`
           padding: 8px 16px; // こちらのボタンの横幅も広げる
-          display: flex;
         `}
       >
-        <HomeButton />
         <TweetButton />
       </div>
     </footer>
