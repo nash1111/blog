@@ -1000,10 +1000,10 @@
   resolved "https://registry.yarnpkg.com/@babylonjs/loaders/-/loaders-6.12.2.tgz#537bb04b22f390e64bc8ab0d305f57a57d88de37"
   integrity sha512-LH0vlJyhC0ZvZYTCuMcbsXJwMFo+UkmY/Z89yrN+GtGucw2oCiZ4uMHrzBPYp88IUPJRldVu4fMbZVA7hAox+g==
 
-"@babylonjs/materials@^6.12.2":
-  version "6.12.2"
-  resolved "https://registry.yarnpkg.com/@babylonjs/materials/-/materials-6.12.2.tgz#dd7ea6d77a48e6141fe96820747ddd18eed25249"
-  integrity sha512-TGn3374So1cnZZk3wGB7opYOEnrIhbaf3h72OAEkLHO7/r7EagYG77C+1I+O/EQDYZG/J3s64jPuH92C44tQUw==
+"@babylonjs/materials@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@babylonjs/materials/-/materials-6.13.0.tgz#8a5486f1c2628987c93570c4268e58d691aa3ae1"
+  integrity sha512-7sMpHuy8GyWO8s6S6owTLsTenI0Tx9PNsR4aL38dNIq/UqvvYF1VMLFOgaib7paSwr/ESq08ucij4BB8dHEZQw==
 
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
