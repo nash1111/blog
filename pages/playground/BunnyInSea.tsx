@@ -37,7 +37,7 @@ const BunnyInSea: React.FC = () => {
         function (newMeshes) {
           const bunny = newMeshes[0];
           bunny.position.y = -0.5;
-          bunny.scaling = new BABYLON.Vector3(0.3, 0.3, 0.3);
+          bunny.scaling = new BABYLON.Vector3(0.2, 0.2, 0.2);
           const gizmoManager = new BABYLON.GizmoManager(scene);
           gizmoManager.boundingBoxGizmoEnabled = true;
           gizmoManager.attachToMesh(bunny);
@@ -96,6 +96,7 @@ const BunnyInSea: React.FC = () => {
       water.colorBlendFactor = 0.3;
       water.bumpHeight = 0.1;
       water.waveLength = 0.1;
+      water.alpha = 0.7;
       water.addToRenderList(skybox);
       water.addToRenderList(ground);
       waterMesh.material = water;
