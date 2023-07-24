@@ -3,7 +3,7 @@ import * as BABYLON from "@babylonjs/core";
 import "@babylonjs/loaders";
 import { WaterMaterial } from "@babylonjs/materials";
 
-const BunnyInSea: React.FC = () => {
+const BunnyInTheSea: React.FC = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -119,4 +119,4 @@ const BunnyInSea: React.FC = () => {
   return <canvas ref={canvasRef} style={{ width: "100%", height: "100vh" }} />;
 };
 
-export default BunnyInSea;
+export default BunnyInTheSea;
