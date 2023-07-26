@@ -1,7 +1,7 @@
 ---
 title: wasmCloudでActorを作る
 date: "2023-07-02"
-tags: ["WebAssembly", "wasmCloud", "Actor"]
+tags: ["WebAssembly", "wasmCloud", "Actor", "Rust"]
 locale: "jp"
 ---
 
