@@ -20,8 +20,8 @@ const PostsToCard: React.FC<CardsListProps> = ({ postsData }) => {
 
   const filteredPosts = selectedTags.length
     ? postsData.filter((post) =>
-        post.tags?.some((tag) => selectedTags.includes(tag))
-      )
+      post.tags?.some((tag) => selectedTags.includes(tag))
+    )
     : postsData;
 
   return (
@@ -44,7 +44,7 @@ const PostsToCard: React.FC<CardsListProps> = ({ postsData }) => {
       <div
         css={css`
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
           gap: 4em;
         `}
       >
