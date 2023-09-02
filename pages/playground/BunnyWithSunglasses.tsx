@@ -3,7 +3,7 @@ import * as BABYLON from "@babylonjs/core";
 import "@babylonjs/loaders";
 import { WaterMaterial } from "@babylonjs/materials";
 
-const BunnyInSea: React.FC = () => {
+const BunnyWithSunglasses: React.FC = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -40,6 +40,28 @@ const BunnyInSea: React.FC = () => {
           bunny.scaling = new BABYLON.Vector3(0.2, 0.2, 0.2);
           const gizmoManager = new BABYLON.GizmoManager(scene);
           gizmoManager.boundingBoxGizmoEnabled = true;
+          gizmoManager.attachToMesh(bunny);
+        }
+      );
+
+      BABYLON.SceneLoader.ImportMesh(
+        "",
+        "/",
+        "Glasses_120mm.stl",
+        scene,
+        function (newMeshes) {
+          const bunny = newMeshes[0];
+          bunny.position.y = -0.5;
+          bunny.scaling = new BABYLON.Vector3(0.09, 0.09, 0.09);
+          const gizmoManager = new BABYLON.GizmoManager(scene);
+          gizmoManager.boundingBoxGizmoEnabled = true;
+
+          // スケーリングギズモを有効にする
+          gizmoManager.scaleGizmoEnabled = true;
+
+          // 回転ギズモを有効にする
+          gizmoManager.rotationGizmoEnabled = true;
+
           gizmoManager.attachToMesh(bunny);
         }
       );
@@ -119,4 +141,4 @@ const BunnyInSea: React.FC = () => {
   return <canvas ref={canvasRef} style={{ width: "100%", height: "100vh" }} />;
 };
 
-export default BunnyInSea;
+export default BunnyWithSunglasses;

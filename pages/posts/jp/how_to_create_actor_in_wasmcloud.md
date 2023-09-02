@@ -1,7 +1,7 @@
 ---
 title: wasmCloudでActorを作る
 date: "2023-07-02"
-tags: ["WebAssembly", "wasmCloud", "Actor"]
+tags: ["WebAssembly", "wasmCloud", "Actor", "Rust"]
 locale: "jp"
 ---
 
@@ -57,7 +57,7 @@ firstactor プロジェクトのルートで実行します。
 ```bash
 ❯ wash build
 
-# check _s.wasm generated
+# _s.wasm が生成されます
 ❯ ls build/firstactor_s.wasm
 build/firstactor_s.wasm
 ```
@@ -71,21 +71,21 @@ WebUI(localhost:4000)で"Start Provider"からデフォルトの設定で一つ�
 #### Link の作成
 
 ```bash
-# get your host id
+# PROVIDER_IDを見ます
 ❯ wash get
 
-# get your ACTOR_ID
+# ACTOR_IDを見ます
 ❯ wash get inventory [host id]
 
-# set up environment variables
+# 環境変数を設定します
 ❯ export HELLO_ACTOR_ID= [actor id you see above]
 ❯ export PROVIDER_ID= [provider id you see above]
 
-# put link
+# Linkをつけます
 ❯ wash ctl link put ${HELLO_ACTOR_ID} ${PROVIDER_ID} wasmcloud:httpserver address=0.0.0.0:8087
 ```
 
-Now you can see Actors, Providers, Link Definition Activated
+Actor, Provider, Link が Active であることを確認します
 ![wasm_uploaded](/blog/wasm_uploaded.png)
 
 #### テスト

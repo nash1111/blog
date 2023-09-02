@@ -1,22 +1,22 @@
 ---
-title: How to install wash(wasmCloud Shell) on Ubuntu
+title: wash(wasmCloud Shell)をUbuntuにインストール
 date: "2023-07-01"
 tags: ["WebAssembly", "wasmCloud"]
-locale: "en"
+locale: "jp"
 ---
 
-#### Goal
+#### ゴール
 
-install wasmCloud and wash (wasmCloud Shell)
+wasmCloud の CLI ツールの wash をインストールします
 
-#### Installation
+#### インストール
 
 ```bash
-# install wash
+# washのインストール
 ❯ curl -s https://packagecloud.io/install/repositories/wasmcloud/core/script.deb.sh | sudo bash
 ❯ sudo apt install wash openssl
 
-# start wasm cloud
+# wasmCloudの起動
 ❯ wash up --detached
 
 🛁 wash up completed successfully
@@ -27,10 +27,9 @@ install wasmCloud and wash (wasmCloud Shell)
 ⬇️  To stop wasmCloud, run "wash down"
 ```
 
-At [http://localhost:4000/](http://localhost:4000/) you will see dashboard
+[http://localhost:4000/](http://localhost:4000/)でダッシュボードが見えていれば起動できています
 ![wasmCloudDashboard.png](/blog/wasmCloudDashboard.png)
 
-#### Next
+#### 次
 
-In the next post, we will introduce the steps to create an Actor.  
-In the following post, we will present the process to create a Provider.
+次の投稿で、wasm から Actor を作り、ハローワールドをします
