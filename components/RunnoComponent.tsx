@@ -7,7 +7,7 @@ const RunnoComponent = () => {
   // @ts-ignore
   const runPythonScript = `
   print("Hi")
-  number = input("Choose number")
+  number = int(input("Choose number"))
   if number % 2 == 0:
       print("That number is even")
   print("Done")

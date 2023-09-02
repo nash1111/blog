@@ -11,7 +11,7 @@ const DynamicRunnoComponent = dynamic(
 const PythonExample = () => {
   return (
     <div>
-      <h1>Your Page</h1>
+      <h1>is even ?</h1>
       <DynamicRunnoComponent />
     </div>
   );
