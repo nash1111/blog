@@ -5,9 +5,16 @@ import "@runno/runtime";
 const RunnoComponent = () => {
   // ignore all typescript errors
   // @ts-ignore
+  const runPythonScript = `
+  print("Hi")
+  number = input("Choose number")
+  if number % 2 == 0:
+      print("That number is even")
+  print("Done")
+  `;
   return (
     <runno-run runtime="python" editor controls>
-      print("Hello, World!")
+      {runPythonScript}
     </runno-run>
   );
 };
