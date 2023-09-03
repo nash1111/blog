@@ -1,10 +1,10 @@
-// YourPage.js
 import dynamic from "next/dynamic";
 
 const DynamicRunnoComponent = dynamic(
   () => import("../../../components/RunnoComponent"),
   {
     ssr: false, // Disable SSR
+    loading: () => <p>Loading...</p>, // Add loading component
   }
 );
 
