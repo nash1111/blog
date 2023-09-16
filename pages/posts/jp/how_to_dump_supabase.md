@@ -7,7 +7,7 @@ locale: "jp"
 
 #### 準備
 PROJECT_REFにprojec-refを入れます  
-projectの名前とは別で、対象のprojectにダッシュボートでアクセスした時の```project/```移行がproject-refです  
+projectの名前とは別で、対象のprojectにダッシュボートでアクセスした時の```project/```以降がproject-refです  
 例  
 ```https://supabase.com/dashboard/project/{project-ref}```
 ```bash
