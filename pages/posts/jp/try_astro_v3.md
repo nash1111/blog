@@ -1,17 +1,19 @@
 ---
 title: Astro v3でサポートされたView Transitions APIを試す
 date: "2023-09-16"
-tags: ["WebAssembly", "extism", "WASI"]
+tags: ["Astro", "front-end"]
 locale: "jp"
 ---
 
 #### この記事の内容
-Astro v3が[View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)を[組み込んだ](https://developer.chrome.com/blog/astro-view-transitions/)らしいので試しました  
-fade(デフォルトの挙動,滑らかに遷移)とslide(横から新しいコンテンツが現れる)を試しました
 
+Astro v3 が[View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)を[組み込んだ](https://developer.chrome.com/blog/astro-view-transitions/)らしいので試しました  
+fade(デフォルトの挙動,滑らかに遷移)と slide(横から新しいコンテンツが現れる)を試しました
 
 #### 手順
+
 index.astro
+
 ```bash
 ---
 import { ViewTransitions } from 'astro:transitions';
@@ -28,8 +30,8 @@ import { ViewTransitions } from 'astro:transitions';
 </html>
 ```
 
-
 fuga.astro
+
 ```bash
 ---
 import { ViewTransitions } from 'astro:transitions';
@@ -48,8 +50,10 @@ import { ViewTransitions } from 'astro:transitions';
 ```
 
 ### 動き
+
 [Youtube](https://www.youtube.com/watch?v=yn8RlDJK-QI)にアップロードしました  
 なめらかに遷移して楽しかったです
 
 #### 参考
-[Astro v3へのアップグレード](https://docs.astro.build/ja/guides/upgrade-to/v3/)
+
+[Astro v3 へのアップグレード](https://docs.astro.build/ja/guides/upgrade-to/v3/)
