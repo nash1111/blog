@@ -39,7 +39,8 @@ package-lock.json消す
 
 package.json修正
 before
-```
+
+```bash
     "dev": "remix dev --manual -c \"npm run start\"",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "wrangler pages dev --compatibility-date=2023-06-21 ./public",
@@ -47,7 +48,8 @@ before
     "pages:deploy": "npm run build && wrangler pages deploy ./public"
 ```
 after
-```
+
+```bash
     "dev": "remix dev --manual -c \"bun run start\"",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "wrangler pages dev --compatibility-date=2023-06-21 ./public",
