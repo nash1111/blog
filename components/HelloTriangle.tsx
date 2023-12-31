@@ -48,7 +48,14 @@ const HelloTriangle: React.FC = () => {
 
         const commandEncoder = device.createCommandEncoder();
         const textureView = context.getCurrentTexture().createView();
-        const renderPassDescriptor = createRenderPassDescriptor(textureView);
+        const redRandom = Math.random();
+        const greenRandom = Math.random();
+        const blueRandom = Math.random();
+
+        //console.log("hoge", Math.random());
+        const renderPassDescriptor = createRenderPassDescriptor(textureView, redRandom,
+          greenRandom,
+          blueRandom);
 
         const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor);
         passEncoder.setPipeline(pipeline);
@@ -84,12 +91,12 @@ function createRenderPipeline(device: GPUDevice, format: GPUTextureFormat): GPUR
   });
 }
 
-function createRenderPassDescriptor(textureView: GPUTextureView): GPURenderPassDescriptor {
+function createRenderPassDescriptor(textureView: GPUTextureView, red: number, green: number, blue: number): GPURenderPassDescriptor {
   return {
     colorAttachments: [
       {
         view: textureView,
-        clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
+        clearValue: { r: red, g: green, b: blue, a: 1.0 },
         loadOp: "clear",
         storeOp: "store",
       },
