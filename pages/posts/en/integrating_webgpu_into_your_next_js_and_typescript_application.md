@@ -7,18 +7,27 @@ locale: "en"
 
 #### Goal
 
-In this post, we will set up our development environment and draw a triangle using WebGPU, and then turn it into a component. We aim to render the red triangle seen in this [link](https://webgpu.github.io/webgpu-samples/samples/helloTriangle) within Next.js. In other words, our goal is to port this [code](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts) into a component.
+In this post, we will set up our development environment and draw a triangle
+using WebGPU, and then turn it into a component. We aim to render the red
+triangle seen in this
+[link](https://webgpu.github.io/webgpu-samples/samples/helloTriangle) within
+Next.js. In other words, our goal is to port this
+[code](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts)
+into a component.
 
 #### Environment Setup
 
-Access [chrome://flags/](chrome://flags/) in your chrome browser and turn on WebGPU.  
-Access [chrome://gpu/](chrome://gpu/) in your chrome browser and make sure WebGPU is enabled.  
+Access [chrome://flags/](chrome://flags/) in your chrome browser and turn on
+WebGPU.\
+Access [chrome://gpu/](chrome://gpu/) in your chrome browser and make sure
+WebGPU is enabled.\
 ![webgpu.png](/blog/webgpu.png)
 
-Install an extension for WGSL.  
+Install an extension for WGSL.\
 https://marketplace.visualstudio.com/items?itemName=PolyMeilex.wgsl
 
-Add the WebGPU type definitions to your project ( [type repo](https://github.com/gpuweb/types) )
+Add the WebGPU type definitions to your project (
+[type repo](https://github.com/gpuweb/types) )
 
 ```bash
 yarn add @webgpu/types
@@ -36,34 +45,38 @@ declare module "*.wgsl" {
 Add to next.config.js.
 
 ```bash
-  webpack: (config, { webpack }) => {
-    config.module.rules.push({
-      test: /\.(png|jpe?g|gif|webm)$/i,
-      type: "asset/resource",
-      generator: {
-        filename: "static/[path][name].[hash][ext]",
-      },
-    });
-    config.module.rules.push({
-      test: /\.wgsl$/i,
-      use: "raw-loader",
-    });
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        __SOURCE__: webpack.DefinePlugin.runtimeValue((v) => {
-          // Load the source file and set it as a global definition.
-          // This is useful for easily embedding a file's source into the page.
-          const source = fs.readFileSync(v.module.userRequest, "utf-8");
-          return JSON.stringify(source); // Strings need to be wrapped in quotes
-        }, []),
-      })
-    );
+webpack: (config, { webpack }) => {
+  config.module.rules.push({
+    test: /\.(png|jpe?g|gif|webm)$/i,
+    type: "asset/resource",
+    generator: {
+      filename: "static/[path][name].[hash][ext]",
+    },
+  });
+  config.module.rules.push({
+    test: /\.wgsl$/i,
+    use: "raw-loader",
+  });
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      __SOURCE__: webpack.DefinePlugin.runtimeValue((v) => {
+        // Load the source file and set it as a global definition.
+        // This is useful for easily embedding a file's source into the page.
+        const source = fs.readFileSync(v.module.userRequest, "utf-8");
+        return JSON.stringify(source); // Strings need to be wrapped in quotes
+      }, []),
+    })
+  );
 ```
 
 #### Implementation
 
-The [original code](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts) was largely left as is. However, since compilerOptions was set to strict: false in the original code and true in my project, I added things like checking for the existence of the canvas.
-`components/FirstWebgpu.tsx` eventually ended up looking like this:
+The
+[original code](https://github.com/webgpu/webgpu-samples/blob/main/src/sample/helloTriangle/main.ts)
+was largely left as is. However, since compilerOptions was set to strict: false
+in the original code and true in my project, I added things like checking for
+the existence of the canvas. `components/FirstWebgpu.tsx` eventually ended up
+looking like this:
 
 ```bash
 import React, { useState, useRef, useEffect } from "react";
@@ -167,7 +180,8 @@ export default HelloTriangle;
 
 #### Result
 
-You can see the triangle being drawn at this [link](https://nash1111rgba.com/playground/hellotriangle).  
-Note: Please turn on WebGPU.
-![hellotriangle.png](/blog/hellotriangle.png)  
-In the next post, I would like to implement features such as changing colors over time.
+You can see the triangle being drawn at this
+[link](https://nash1111-old-blog.pages.dev/playground/hellotriangle).\
+Note: Please turn on WebGPU. ![hellotriangle.png](/blog/hellotriangle.png)\
+In the next post, I would like to implement features such as changing colors
+over time.

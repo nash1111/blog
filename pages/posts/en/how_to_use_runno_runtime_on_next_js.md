@@ -6,15 +6,21 @@ locale: "en"
 ---
 
 #### Goal
-Use @runno/runtime to execute code within HTML.  
-The runtimes currently supported by @runno/runtime are python, ruby, quickjs, sqlite, clang, clangpp, and php. For this example, we will use python.
+
+Use @runno/runtime to execute code within HTML.\
+The runtimes currently supported by @runno/runtime are python, ruby, quickjs,
+sqlite, clang, clangpp, and php. For this example, we will use python.
 
 #### Preparation
+
 Add the library
+
 ```bash
 yarn add @runno/runtime
 ```
+
 Add CORS settings to next.config.js
+
 ```bash
 async headers() {
     return [
@@ -35,7 +41,8 @@ async headers() {
   },
 ```
 
-#### Createa  Component
+#### Createa Component
+
 ```bash
 /* eslint-disable react/no-unescaped-entities */
 import "@runno/runtime";
@@ -59,8 +66,8 @@ const RunnoComponent = () => {
 export default RunnoComponent;
 ```
 
-Add the Component to a Page
-Disable SSR
+Add the Component to a Page Disable SSR
+
 ```bash
 import dynamic from "next/dynamic";
 
@@ -85,8 +92,9 @@ export default PythonExample;
 ```
 
 #### Final Result
-[runtime=python specified](https://nash1111rgba.com/playground/runno-wasi/PythonExample)
+
+[runtime=python specified](https://nash1111-old-blog.pages.dev/playground/runno-wasi/PythonExample)
 
 #### References
-[API docs](https://runno.dev/docs/runtime/)
-[runno.dev](https://runno.dev/)
+
+[API docs](https://runno.dev/docs/runtime/) [runno.dev](https://runno.dev/)

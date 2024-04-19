@@ -6,15 +6,20 @@ locale: "jp"
 ---
 
 #### ゴール
-@runno/runtimeを使って、HTML内でコードを実行します。  
+
+@runno/runtimeを使って、HTML内でコードを実行します。\
 現在@runno/runtimeでサポートされているランタイムはpython,ruby,quickjs,sqlite,clang,clangpp,phpです、今回はpythonを使います。
 
 #### 準備
+
 ライブラリ追加
+
 ```bash
 yarn add @runno/runtime
 ```
+
 CORS設定をnext.config.jsに追加
+
 ```bash
 async headers() {
     return [
@@ -36,6 +41,7 @@ async headers() {
 ```
 
 #### コンポーネント作成
+
 ```bash
 /* eslint-disable react/no-unescaped-entities */
 import "@runno/runtime";
@@ -60,7 +66,9 @@ export default RunnoComponent;
 ```
 
 #### ページにコンポーネントの読み込みを追加
+
 SSRを無効化します
+
 ```bash
 import dynamic from "next/dynamic";
 
@@ -85,8 +93,9 @@ export default PythonExample;
 ```
 
 #### 最終的に出来たもの
-[runtime=pythonで指定](https://nash1111rgba.com/playground/runno-wasi/PythonExample)
+
+[runtime=pythonで指定](https://nash1111-old-blog.pages.dev/playground/runno-wasi/PythonExample)
 
 #### 参考
-[API docs](https://runno.dev/docs/runtime/)
-[runno.dev](https://runno.dev/)
+
+[API docs](https://runno.dev/docs/runtime/) [runno.dev](https://runno.dev/)

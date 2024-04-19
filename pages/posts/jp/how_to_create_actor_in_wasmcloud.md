@@ -11,8 +11,8 @@ locale: "jp"
 
 #### Actor とは？
 
-wasmCloud の Actor は Actor Model の Actor を指しています。  
-しかし、他のアクターを生成することができないアクターモデルの学術的な定義とは少し異なります。  
+wasmCloud の Actor は Actor Model の Actor を指しています。\
+しかし、他のアクターを生成することができないアクターモデルの学術的な定義とは少し異なります。\
 詳細は公式ドキュメントを参照してください。[Overview of the Actor Model](https://wasmcloud.com/docs/fundamentals/actors/)
 
 #### Actor の作成と登録
@@ -29,8 +29,6 @@ wasmCloud の Actor は Actor Model の Actor を指しています。
 ✨   Done! New project created [your path]
 
 Project generated and is located at: [your path]
-
-
 ```
 
 firstactor/src/lib.rs に"Hello World"とだけ返すコードが生成されています。
@@ -62,7 +60,8 @@ firstactor プロジェクトのルートで実行します。
 build/firstactor_s.wasm
 ```
 
-WebUI(localhost:4000)で"Start Actor"を選び"From File"で生成された`_s.wasm` をアップロードします。
+WebUI(localhost:4000)で"Start Actor"を選び"From File"で生成された`_s.wasm`
+をアップロードします。
 
 #### Provider の作成
 
@@ -95,4 +94,4 @@ Actor, Provider, Link が Active であることを確認します
 Hello, World!
 ```
 
-[原文](https://nash1111rgba.com/posts/how_to_make_wasmcloud_actor)
+[原文](https://nash1111-old-blog.pages.dev/posts/how_to_make_wasmcloud_actor)
